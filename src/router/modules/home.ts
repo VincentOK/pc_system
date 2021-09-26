@@ -2,7 +2,7 @@ import { RouteRecordRaw } from 'vue-router';
 const home: RouteRecordRaw[] = [
   {
     path: '/',
-    name: 'Home',
+    name: 'Index',
     component: () => import('/@/views/dashboard/dashboard.vue')
   }
 ];

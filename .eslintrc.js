@@ -16,6 +16,7 @@ module.exports = {
     'localStorage': true,
     'window': true
   },
+  parser: 'vue-eslint-parser',
   'parserOptions': {
     'ecmaVersion': 12,
     'sourceType': 'module',
@@ -43,7 +44,10 @@ module.exports = {
     // Off; 不允许在循环中出现await
     'no-await-in-loop': 0,
     // Off; 允许使用console进行代码调试
-    'no-console': 0,
+    // eslint-disable-next-line no-undef
+    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    // eslint-disable-next-line no-undef
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     // Warn; 直接调用对象原型链上的方法
     'no-prototype-builtins': 1,
     // Off; 函数注释一定要遵守jsdoc规则

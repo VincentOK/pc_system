@@ -10,6 +10,11 @@
     <a-button type="primary" @click="btnFn">
       更改store值
     </a-button>
+    <br />
+    <br />
+    <a-button type="primary" @click="toIndex">
+      切换页面
+    </a-button>
   </div>
 </template>
 <script lang="ts" setup>
@@ -17,6 +22,7 @@ import HelloWorld from '/@/components/HelloWorld.vue';
 import {ref, computed, defineExpose} from 'vue';
 import { useStore } from 'vuex';
 import { postUserRecord } from '/@/api/home';
+import router from '/@/router';
 const store = useStore();
 const value = computed(() => {
   return store.state.special.title;
@@ -34,6 +40,11 @@ const requstFn = async (): Promise<void> => {
 const btnFn = ():void => {
   //store.dispatch('special/actionSetTitle');
   store.commit('special/setTitle', '这也是新标题');
+};
+const toIndex = ():void => {
+  router.push({
+    name: 'Index'
+  });
 };
 </script>
 <style scoped lang="less">

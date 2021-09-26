@@ -8,7 +8,7 @@ import './style/index.less';
 import './style/main.less';
 (async () => {
   const app = createApp(App);
-  app.use(Antd),
+  app.use(Antd);
   setupRouter(app);
   setupRouterGuard();
   setupStore(app);
