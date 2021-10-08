@@ -50,6 +50,11 @@
       "name": "@vuedx/typescript-plugin-vue"
     }]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "./types"],
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "types/**/*.d.ts"],
   "exclude": ["node_modules"]
 }

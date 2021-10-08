@@ -4,7 +4,7 @@ import {
     getListParmas
 } from './model/home';
 enum Api {
-    treeDeptList = `/system/dept/treeselect`,
+    treeDeptList = `/exam/examPlace/findExamPlaceByType`,
 }
 export const postUserRecord = (data?:getListParmas):Promise<getListModel[]> => {
     return http.request('get', Api.treeDeptList, data as object);

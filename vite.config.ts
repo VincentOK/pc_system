@@ -1,63 +1,111 @@
-import { defineConfig } from 'vite';
-import vue from '@vitejs/plugin-vue';
-import styleImport from 'vite-plugin-style-import';
-import vueJsx from '@vitejs/plugin-vue-jsx';
+import type { UserConfig, ConfigEnv } from 'vite';
+// eslint-disable-next-line no-duplicate-imports
+import { loadEnv } from 'vite';
+import { resolve } from 'path';
+import { createProxy } from './build/vite/proxy';
+import { wrapperEnv } from './build/utils';
+import { createVitePlugins } from './build/vite/plugin';
+import { OUTPUT_DIR } from './build/constant';
+
 // @ts-ignore
-import path, {resolve} from 'path';
+import pkg from './package.json';
+import moment from 'moment';
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
+import styleImport from 'vite-plugin-style-import';
+
 function pathResolve(dir: string) {
   // eslint-disable-next-line no-undef
   return resolve(process.cwd(), '.', dir);
 }
-// https://vitejs.dev/config/
-export default defineConfig({
+
+const { dependencies, devDependencies, name, version } = pkg;
+const __APP_INFO__ = {
+  pkg: { dependencies, devDependencies, name, version },
+  lastBuildTime: moment().format('YYYY-MM-DD HH:mm:ss')
+};
+
+export default ({ command, mode }: ConfigEnv): UserConfig => {
+  // eslint-disable-next-line no-undef
+  const root = process.cwd();
+
+  const env = loadEnv(mode, root);
+  console.log(env);
+  // The boolean type read by loadEnv is a string. This function can be converted to boolean type
+  const viteEnv = wrapperEnv(env);
+
+  const { VITE_PORT, VITE_PUBLIC_PATH, VITE_PROXY, VITE_DROP_CONSOLE } = viteEnv;
+
+  const isBuild = command === 'build';
+
+  return {
+    base: VITE_PUBLIC_PATH,
+    root,
     resolve: {
       alias: [
-          // /@/xxxx => src/xxxx
-          {
-            find: /\/@\//,
-            replacement: pathResolve('src') + '/'
-          },
-              // /#/xxxx => types/xxxx
-              {
-                find: /\/#\//,
-                replacement: pathResolve('types') + '/'
-              }
-          // ['@vue/compiler-sfc', '@vue/compiler-sfc/dist/compiler-sfc.esm-browser.js'],
-          ]
-  },
-  plugins: [
-    vue(),
-    vueJsx(),
-    styleImport({
-      libs: [
+        // /@/xxxx => src/xxxx
         {
-          libraryName: 'ant-design-vue',
-          esModule: true,
-          resolveStyle: (_name) => `ant-design-vue/dist/antd.css`
+          find: /\/@\//,
+          replacement: pathResolve('src') + '/'
+        },
+        // /#/xxxx => types/xxxx
+        {
+          find: /\/#\//,
+          replacement: pathResolve('types') + '/'
         }
+        // ['@vue/compiler-sfc', '@vue/compiler-sfc/dist/compiler-sfc.esm-browser.js'],
       ]
-    })
-  ],
-  build: {
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true
-      }
-    }
-  },
-  base: './', //打包路径
-  server: {
-    port: 9797, //启动端口
-    open: true,
-    // 反向代理
-    proxy: {
-      '/api': {
-        target: 'http://192.168.2.9:8123/',
-        changeOrigin: true,
-        rewrite: path => path.replace(/^\/api/, '')
+    },
+    server: {
+      port: VITE_PORT,
+      host: '0.0.0.0',
+      // Load proxy configuration from .env
+      proxy: createProxy(VITE_PROXY)
+    },
+    build: {
+      target: 'es2015',
+      outDir: OUTPUT_DIR,
+      terserOptions: {
+        compress: {
+          keep_infinity: true,
+          // Used to delete console in production environment
+          drop_console: VITE_DROP_CONSOLE
+        }
+      },
+      // Turning off brotliSize display can slightly reduce packaging time
+      brotliSize: false,
+      chunkSizeWarningLimit: 1500
+    },
+    define: {
+      // setting vue-i18-next
+      // Suppress warning
+      __VUE_I18N_LEGACY_API__: false,
+      __VUE_I18N_FULL_INSTALL__: false,
+      __INTLIFY_PROD_DEVTOOLS__: false,
+
+      __APP_INFO__: JSON.stringify(__APP_INFO__)
+    },
+    css: {
+      preprocessorOptions: {
+        less: {
+          // modifyVars: generateModifyVars(),
+          javascriptEnabled: true
+        }
       }
     },
-    cors: true
-  }
-});
+
+    // The vite plugin used by the project. The quantity is large, so it is separately extracted and managed
+    plugins: createVitePlugins(viteEnv, isBuild),
+    optimizeDeps: {
+      // @iconify/iconify: The dependency is dynamically and virtually loaded by @purge-icons/generated, so it needs to be specified explicitly
+      include: [
+        '@iconify/iconify',
+        'ant-design-vue/es/locale/zh_CN',
+        'moment/dist/locale/zh-cn',
+        'ant-design-vue/es/locale/en_US',
+        'moment/dist/locale/eu'
+      ],
+      exclude: ['vue-demi']
+    }
+  };
+};

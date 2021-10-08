@@ -1,22 +1,3 @@
-<script setup lang="ts">
-import {ref, defineProps, defineEmits} from 'vue';
-const props = defineProps<{
-  msg: string,
-  str: number
-}>();
-const emits = defineEmits<{(
-        e: 'parentsFn', id: number
-  ): void;
-(e: 'childrenFn', id: number): void;
-}>();
-const countStr = ref<number>(0);
-const strArr = ref<Array<string>>(['a', 'b', 'c', 'd']);
-emits('parentsFn', 111);
-for (let i = 0; i < strArr.value.length; i++) {
-    console.log(i);
-}
-</script>
-
 <template>
   <div>
     <h1>{{ msg }}---{{str}}</h1>
@@ -59,7 +40,24 @@ for (let i = 0; i < strArr.value.length; i++) {
     </p>
   </div>
 </template>
-
+<script lang="ts" setup>
+  import {ref, defineProps, defineEmits} from 'vue';
+  const props = defineProps<{
+    msg: string,
+    str: number
+  }>();
+  const emits = defineEmits<{(
+            e: 'parentsFn', id: number
+    ): void;
+    (e: 'childrenFn', id: number): void;
+  }>();
+  const countStr = ref<number>(0);
+  const strArr = ref<Array<string>>(['a', 'b', 'c', 'd']);
+  emits('parentsFn', 111);
+  for (let i = 0; i < strArr.value.length; i++) {
+    console.log(i);
+  }
+</script>
 <style scoped>
 a {
     color: #42b983;

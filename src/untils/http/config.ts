@@ -8,6 +8,7 @@ export interface httpSuccessCode {
 }
 // @ts-ignore
 const baseURL:string = import.meta.env.VITE_APP_BASE_API || '';
+
 /**
  * 默认配置
  */
