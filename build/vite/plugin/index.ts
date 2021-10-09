@@ -31,7 +31,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
     // have to
     vue(),
     // have to
-    vueJsx(),
+    vueJsx()
   ];
 
   // TODO
@@ -53,6 +53,7 @@ export function createVitePlugins(viteEnv: ViteEnv, isBuild: boolean) {
   VITE_USE_MOCK && vitePlugins.push(configMockPlugin(isBuild));
 
   // vite-plugin-purge-icons
+  // eslint-disable-next-line new-cap
   vitePlugins.push(PurgeIcons());
 
   // vite-plugin-style-import

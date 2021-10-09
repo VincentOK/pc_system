@@ -12,34 +12,34 @@ const userInfo = {
   tags: [
     {
       key: '0',
-      label: '很有想法的',
+      label: '很有想法的'
     },
     {
       key: '1',
-      label: '专注设计',
+      label: '专注设计'
     },
     {
       key: '2',
-      label: '辣~',
+      label: '辣~'
     },
     {
       key: '3',
-      label: '大长腿',
+      label: '大长腿'
     },
     {
       key: '4',
-      label: '川妹子',
+      label: '川妹子'
     },
     {
       key: '5',
-      label: '海纳百川',
-    },
+      label: '海纳百川'
+    }
   ],
   notifyCount: 12,
   unreadCount: 11,
   country: 'China',
   address: 'Xiamen City 77',
-  phone: '0592-268888888',
+  phone: '0592-268888888'
 };
 
 export default [
@@ -49,6 +49,6 @@ export default [
     method: 'get',
     response: () => {
       return resultSuccess(userInfo);
-    },
-  },
+    }
+  }
 ] as MockMethod[];

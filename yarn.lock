@@ -1381,6 +1381,13 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.48.tgz#18dc8091b285df90db2f25aa7d906cfc394b7f74"
   integrity sha512-LfZwXoGUDo0C3me81HXgkBg5CTQYb6xzEl+fNmbO4JdRiSKQ8A0GD1OBBvKAIsbCUgoyAty7m99GqqMQe784ew==
 
+"@types/fs-extra@^9.0.13":
+  version "9.0.13"
+  resolved "https://registry.yarnpkg.com/@types/fs-extra/-/fs-extra-9.0.13.tgz#7594fbae04fe7f1918ce8b3d213f74ff44ac1f45"
+  integrity sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==
+  dependencies:
+    "@types/node" "*"
+
 "@types/glob@^7.1.1":
   version "7.1.4"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.4.tgz#ea59e21d2ee5c517914cb4bc8e4153b99e566672"
@@ -3304,10 +3311,24 @@ esbuild-linux-ppc64le@0.13.4:
   resolved "https://registry.yarnpkg.com/esbuild-linux-ppc64le/-/esbuild-linux-ppc64le-0.13.4.tgz#adf1ce2ef2302757c4383887da6ac4dd25be9d4f"
   integrity sha512-E1+oJPP7A+j23GPo3CEpBhGwG1bni4B8IbTA3/3rvzjURwUMZdcN3Fhrz24rnjzdLSHmULtOE4VsbT42h1Om4Q==
 
+esbuild-node-loader@^0.4.2:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/esbuild-node-loader/-/esbuild-node-loader-0.4.2.tgz#ee8f3c0da187f593e0166ffaa0a1f2e1edf0fcd3"
+  integrity sha512-3SieWnHgnhMKwn+qG2AjQq3Yf9RrgHeKGxGLauaLKfBTCpbm4nJbUt4CV3waHcRizILzlpZbESLkY9rnFHr6/w==
+  dependencies:
+    esbuild "^0.13.2"
+
 esbuild-openbsd-64@0.13.4:
   version "0.13.4"
   resolved "https://registry.yarnpkg.com/esbuild-openbsd-64/-/esbuild-openbsd-64-0.13.4.tgz#1c8122101898c52a20c8786935cf3eb7a19b83b4"
   integrity sha512-xEkI1o5HYxDzbv9jSox0EsDxpwraG09SRiKKv0W8pH6O3bt+zPSlnoK7+I7Q69tkvONkpIq5n2o+c55uq0X7cw==
+
+esbuild-register@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/esbuild-register/-/esbuild-register-3.0.0.tgz#874156f95cac7c1720d6d24cbd78c599bf35ac74"
+  integrity sha512-No7U3ZUd6gPrrC6gqdb3XFcf2lNqzn8nvQXcgcyOl8szMVuN6YUvOplnmakxWyogI9d8SiJMl0uzBzJck+Aoxw==
+  dependencies:
+    jsonc-parser "^3.0.0"
 
 esbuild-sunos-64@0.13.4:
   version "0.13.4"
@@ -3339,7 +3360,7 @@ esbuild@^0.12.17:
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.12.25.tgz#c2131cef022cf9fe94aaa5e00110b27fc976221a"
   integrity sha512-woie0PosbRSoN8gQytrdCzUbS2ByKgO8nD1xCZkEup3D9q92miCze4PqEI9TZDYAuwn6CruEnQpJxgTRWdooAg==
 
-esbuild@^0.13.2, esbuild@^0.13.4:
+esbuild@^0.13.2, esbuild@^0.13.3, esbuild@^0.13.4:
   version "0.13.4"
   resolved "https://registry.yarnpkg.com/esbuild/-/esbuild-0.13.4.tgz#ce2deb56c4fb360938311cbfc67f8e467bb6841b"
   integrity sha512-wMA5eUwpavTBiNl+It6j8OQuKVh69l6z4DKDLzoTIqC+gChnPpcmqdA8WNHptUHRnfyML+mKEQPlW7Mybj8gHg==
@@ -3480,6 +3501,16 @@ eslint@^7.32.0:
     table "^6.0.9"
     text-table "^0.2.0"
     v8-compile-cache "^2.0.3"
+
+esno@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/esno/-/esno-0.10.1.tgz#28f9adb30fdcc5960475d034a4f22311d334d6cd"
+  integrity sha512-wsXUWZxI0O59bvOjggWOGDd6VSwPxG+37Np8aUI1LwORIONN3L2nOOJHT7jZ3xAGkfq/J3YcnZsx+Mmw6BQFmQ==
+  dependencies:
+    cross-spawn "^7.0.3"
+    esbuild "^0.13.3"
+    esbuild-node-loader "^0.4.2"
+    esbuild-register "^3.0.0"
 
 espree@^6.2.1:
   version "6.2.1"

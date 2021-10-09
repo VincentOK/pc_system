@@ -12,7 +12,7 @@ const fn = () => {
 };
 </script>
 <style scoped lang="less">
-  .dashboard{
+.dashboard {
     border: 1px solid red;
-  }
+}
 </style>

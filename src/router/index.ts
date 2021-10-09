@@ -1,8 +1,8 @@
 import {App} from 'vue';
-import { RouteRecordRaw, createRouter, createWebHistory } from 'vue-router';
+import { RouteRecordRaw, createRouter, createWebHistory, createWebHashHistory } from 'vue-router';
 import routes from './asyncRouter';
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   scrollBehavior(_to, _from, savedPosition) {
     if (savedPosition) {
       return { ...savedPosition, behavior: 'smooth' };

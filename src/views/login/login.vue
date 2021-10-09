@@ -1,18 +1,30 @@
 <template>
   <div class="div_">
-    <HelloWorld msg="typescript vite" :str="str"/>
-    <p>{{value}}</p>
-    <a-button type="primary" @click="requstFn">
+    <HelloWorld
+      msg="typescript vite"
+      :str="str"
+    />
+    <p>{{ value }}</p>
+    <a-button
+      type="primary"
+      @click="requstFn"
+    >
       {{ btnValue }}
     </a-button>
-    <br />
-    <br />
-    <a-button type="primary" @click="btnFn">
+    <br>
+    <br>
+    <a-button
+      type="primary"
+      @click="btnFn"
+    >
       更改store值
     </a-button>
-    <br />
-    <br />
-    <a-button type="primary" @click="toIndex">
+    <br>
+    <br>
+    <a-button
+      type="primary"
+      @click="toIndex"
+    >
       切换页面
     </a-button>
   </div>
@@ -20,15 +32,15 @@
 <script lang="ts" setup>
 import HelloWorld from '/@/components/HelloWorld.vue';
 import {ref, computed, defineExpose} from 'vue';
-import { useStore } from 'vuex';
-import { postUserRecord } from '/@/api/home';
+import {useStore} from 'vuex';
+import {postUserRecord} from '/@/api/home';
 import router from '/@/router';
 const store = useStore();
 const value = computed(() => {
-  return store.state.special.title;
+    return store.state.special.title;
 });
 const border: Object = {
-  color: '1px solid red'
+    color: '1px solid red'
 };
 const str = ref<number>(111);
 const btnValue = ref<string>('login');
@@ -37,18 +49,18 @@ const requstFn = async (): Promise<void> => {
     const data = await postUserRecord();
     console.log(data[0].code);
 };
-const btnFn = ():void => {
-  //store.dispatch('special/actionSetTitle');
-  store.commit('special/setTitle', '这也是新标题');
+const btnFn = (): void => {
+    //Store.dispatch('special/actionSetTitle');
+    store.commit('special/setTitle', '这也是新标题');
 };
-const toIndex = ():void => {
-  router.push({
-    name: 'Index'
-  });
+const toIndex = (): void => {
+    router.push({
+        name: 'Index'
+    });
 };
 </script>
 <style scoped lang="less">
-    .div_ {
-        border: v-bind('border.color');
-    }
+.div_ {
+    border: v-bind('border.color');
+}
 </style>

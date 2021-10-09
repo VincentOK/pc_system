@@ -1,11 +1,11 @@
 // Interface data format used to return a unified format
-
+type Recordable<T = any> = Record<string, T>;
 export function resultSuccess<T = Recordable>(result: T, { message = 'ok' } = {}) {
   return {
     code: 0,
     result,
     message,
-    type: 'success',
+    type: 'success'
   };
 }
 
@@ -15,14 +15,15 @@ export function resultPageSuccess<T = any>(
   list: T[],
   { message = 'ok' } = {}
 ) {
+  // eslint-disable-next-line no-use-before-define
   const pageData = pagination(page, pageSize, list);
 
   return {
     ...resultSuccess({
       items: pageData,
-      total: list.length,
+      total: list.length
     }),
-    message,
+    message
   };
 }
 
@@ -31,7 +32,7 @@ export function resultError(message = 'Request failed', { code = -1, result = nu
     code,
     result,
     message,
-    type: 'error',
+    type: 'error'
   };
 }
 
