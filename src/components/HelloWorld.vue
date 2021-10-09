@@ -40,7 +40,7 @@
     </p>
   </div>
 </template>
-<script setup lang="ts">
+<script lang="ts" setup>
 import {ref, defineProps, defineEmits} from 'vue';
 const props = defineProps<{
     msg: string;

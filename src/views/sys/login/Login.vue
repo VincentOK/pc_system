@@ -55,7 +55,7 @@ const btnFn = (): void => {
 };
 const toIndex = (): void => {
     router.push({
-        name: 'Index'
+        path: '/dashboard'
     });
 };
 </script>
