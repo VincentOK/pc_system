@@ -5,6 +5,9 @@
     <button @click="toLogin">
       login
     </button>
+    <button @click="toAbout">
+      about
+    </button>
   </div>
 </template>
 <script lang="ts" setup>
@@ -18,6 +21,11 @@ const fn = () => {
 const toLogin = () => {
   router.push({
     path: '/login'
+  });
+};
+const toAbout = () => {
+  router.push({
+    path: '/about'
   });
 };
 </script>

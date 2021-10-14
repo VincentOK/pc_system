@@ -9,24 +9,24 @@ export type Component<T extends any = any> =
   | (() => Promise<T>);
 
 export interface RouteMeta {
-  // title
+  // Title
   title: string;
-  //noCache
+  //NoCache
   noCache?: boolean;
   // Whether to ignore permissions
   ignoreAuth?: boolean;
-  // role info
+  // Role info
   roles?: RoleEnum[];
   // Whether not to cache
   ignoreKeepAlive?: boolean;
   // Is it fixed on tab
   affix?: boolean;
-  // icon on tab
+  // Icon on tab
   icon?: string;
 
   frameSrc?: string;
 
-  // current page transition
+  // Current page transition
   transitionName?: string;
 
   // Whether the route has been dynamically added
@@ -60,6 +60,7 @@ export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
   component?: Component | string;
   components?: Component;
   children?: AppRouteRecordRaw[];
+  // eslint-disable-next-line no-undef
   props?: Recordable;
   fullPath?: string;
   hidden?: boolean;
@@ -97,5 +98,5 @@ export interface MenuModule {
   menu: Menu;
 }
 
-// export type AppRouteModule = RouteModule | AppRouteRecordRaw;
+// Export type AppRouteModule = RouteModule | AppRouteRecordRaw;
 export type AppRouteModule = AppRouteRecordRaw;

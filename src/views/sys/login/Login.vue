@@ -4,7 +4,7 @@
       msg="typescript vite"
       :str="str"
     />
-    <p>{{ value }}</p>
+    <p>{{ userInfoData.token }}</p>
     <a-button
       type="primary"
       @click="requstFn"
@@ -32,13 +32,15 @@
 <script lang="ts" setup>
 import HelloWorld from '/@/components/HelloWorld.vue';
 import {ref, computed, defineExpose} from 'vue';
-import {useStore} from 'vuex';
 import {postUserRecord} from '/@/api/home';
 import router from '/@/router';
-const store = useStore();
-const value = computed(() => {
-    return store.state.special.title;
-});
+import { useUserStore } from '/@/store/modules/userStore';
+const useUser = useUserStore();
+const userInfoData = useUser.getUserInfo;
+console.log('userInfoData', userInfoData);
+// const token = computed(() => {
+//     return useUser.getUserInfo.token;
+// });
 const border: Object = {
     color: '1px solid red'
 };
@@ -50,8 +52,8 @@ const requstFn = async (): Promise<void> => {
     console.log(data[0].code);
 };
 const btnFn = (): void => {
-    //Store.dispatch('special/actionSetTitle');
-    store.commit('special/setTitle', '这也是新标题');
+  userInfoData.token = '这是新的token';
+  useUser.setUserInfo(userInfoData);
 };
 const toIndex = (): void => {
     router.push({

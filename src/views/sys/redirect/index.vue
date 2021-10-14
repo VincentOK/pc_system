@@ -1,26 +1,26 @@
 <template>
-    <div></div>
+  <div></div>
 </template>
 <script lang="ts">
-    import { defineComponent, unref } from 'vue';
-    import { useRouter } from 'vue-router';
+import {defineComponent, unref} from 'vue';
+import {useRouter} from 'vue-router';
 
-    export default defineComponent({
-        name: 'Redirect',
-        setup() {
-            const { currentRoute, replace } = useRouter();
+export default defineComponent({
+  name: 'Redirect',
+  setup() {
+    const {currentRoute, replace} = useRouter();
 
-            const { params, query } = unref(currentRoute);
-            const { path } = params;
+    const {params, query} = unref(currentRoute);
+    const {path} = params;
 
-            const _path = Array.isArray(path) ? path.join('/') : path;
-            console.log('_path', _path);
-            replace({
-                path: '/' + _path,
-                query
-            });
-
-            return {};
-        }
+    const _path = Array.isArray(path) ? path.join('/') : path;
+    console.log('_path', _path);
+    replace({
+      path: '/' + _path,
+      query
     });
+
+    return {};
+  }
+});
 </script>

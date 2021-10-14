@@ -10,7 +10,9 @@ import {
   DatePicker,
   Col,
   Checkbox,
-  Switch
+  Switch,
+    Menu,
+    MenuItem
 } from 'ant-design-vue';
 
 const antd = {
@@ -25,6 +27,7 @@ const antd = {
     app.component(DatePicker.name, DatePicker),
     app.component(Col.name, Col),
     app.component(Checkbox.name, Checkbox),
+        app.component(Menu.name, Menu),
     app.component(Switch.name, Switch);
     // 以后想引入什么就引入什么
   }

@@ -9,9 +9,9 @@ import './style/main.less';
 (async () => {
   const app = createApp(App);
   app.use(Antd);
+  setupStore(app);
   setupRouter(app);
   setupRouterGuard();
-  setupStore(app);
   await router.isReady();
   app.mount('#app', true);
 })();

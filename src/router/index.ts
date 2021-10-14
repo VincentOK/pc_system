@@ -18,7 +18,7 @@ const router = createRouter({
   routes
 });
 
-// reset router
+// Reset router
 export function resetRouter() {
   router.getRoutes().forEach((route) => {
     const { name } = route;
