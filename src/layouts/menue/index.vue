@@ -19,6 +19,7 @@ import {LayoutEnum} from '/@/enums/layoutEnum';
 import {useMenuStore} from '/@/store/modules/menuStore';
 import {computed} from 'vue';
 const useMenu = useMenuStore();
+const testGit:string = 'sssss';
 </script>
 
 <style scoped lang="less">

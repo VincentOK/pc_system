@@ -5,7 +5,7 @@ import { LoginRoute } from './routes/index';
 import { REDIRECT_NAME } from './constant';
 console.log(routes);
 const WHITE_NAME_LIST = [LoginRoute.name, REDIRECT_NAME];
-const router = createRouter({
+export const router = createRouter({
   // @ts-ignore
   history: createWebHistory(import.meta.env.VITE_PUBLIC_PATH),
   scrollBehavior(_to, _from, savedPosition) {

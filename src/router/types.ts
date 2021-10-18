@@ -52,7 +52,6 @@ export interface RouteMeta {
 
   isLink?: boolean;
 }
-
 // @ts-ignore
 export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
   name: string;
@@ -65,38 +64,5 @@ export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, 'meta'> {
   fullPath?: string;
   hidden?: boolean;
 }
-export interface MenuTag {
-  type?: 'primary' | 'error' | 'warn' | 'success';
-  content?: string;
-  dot?: boolean;
-}
-
-export interface Menu {
-  name: string;
-
-  icon?: string;
-
-  path: string;
-
-  disabled?: boolean;
-
-  children?: Menu[];
-
-  orderNo?: number;
-
-  roles?: RoleEnum[];
-
-  meta?: Partial<RouteMeta>;
-
-  tag?: MenuTag;
-
-  hideMenu?: boolean;
-}
-
-export interface MenuModule {
-  orderNo?: number;
-  menu: Menu;
-}
-
 // Export type AppRouteModule = RouteModule | AppRouteRecordRaw;
 export type AppRouteModule = AppRouteRecordRaw;

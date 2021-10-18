@@ -35,19 +35,29 @@ import {ref, computed, defineExpose} from 'vue';
 import {postUserRecord} from '/@/api/home';
 import router from '/@/router';
 import { useUserStore } from '/@/store/modules/userStore';
+import { useMenuStore } from '/@/store/modules/menuStore';
 const useUser = useUserStore();
+const useMenu = useMenuStore();
 const userInfoData = useUser.getUserInfo;
 console.log('userInfoData', userInfoData);
-// const token = computed(() => {
-//     return useUser.getUserInfo.token;
-// });
-const border: Object = {
+const token = computed(() => {
+    return useUser.getUserInfo.token;
+});
+const border: Record<string, string> = {
     color: '1px solid red'
 };
 const str = ref<number>(111);
 const btnValue = ref<string>('login');
+const toIndex = (): void => {
+  console.log('前往首页');
+    router.push({
+        path: '/dashboard'
+    });
+};
 const requstFn = async (): Promise<void> => {
     console.log('====发起网络请求====');
+    // const data_ = useMenu.setMenuList();
+    // toIndex();
     const data = await postUserRecord();
     console.log(data[0].code);
 };
@@ -55,11 +65,7 @@ const btnFn = (): void => {
   userInfoData.token = '这是新的token';
   useUser.setUserInfo(userInfoData);
 };
-const toIndex = (): void => {
-    router.push({
-        path: '/dashboard'
-    });
-};
+
 </script>
 <style scoped lang="less">
 .div_ {

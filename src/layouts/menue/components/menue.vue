@@ -11,19 +11,31 @@
         <template #icon>
           <PieChartOutlined />
         </template>
-        <span>Option 1</span>
+        <span>首页</span>
       </subMenu>
       <subMenu key="2">
         <template #icon>
           <DesktopOutlined />
         </template>
-        <span>Option 2</span>
+        <span>考务管理</span>
       </subMenu>
       <subMenu key="3">
         <template #icon>
           <InboxOutlined />
         </template>
-        <span>Option 3</span>
+        <span>题库管理</span>
+      </subMenu>
+      <subMenu key="4">
+        <template #icon>
+          <InboxOutlined />
+        </template>
+        <span>阅卷管理</span>
+      </subMenu>
+      <subMenu key="5">
+        <template #icon>
+          <InboxOutlined />
+        </template>
+        <span>考风考纪</span>
       </subMenu>
     </AMenu>
     <div

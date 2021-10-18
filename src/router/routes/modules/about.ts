@@ -7,6 +7,7 @@ const home: RouteRecordRaw[] = [
         name: 'About',
         component: LAYOUT,
         meta: {
+
         },
         children: [
             {
